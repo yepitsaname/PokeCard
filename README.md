@@ -30,3 +30,24 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
 8. Should display the image of the previous pokemon or next pokemon by the outer left/right buttons
 9. Should not display any image and grey out left/right buttons if there is no more pokemon
 
+## Page JS Life Cycle
+* ### User Navigated to Page
+1. Check the url for a pokemon id/key pair
+   1. If the url has a id/key pair continue pass it into the next step
+   2. Else set the id/key pair to 1 (Bulbasaur) and pass that into the next step
+2. Check if the current (id/key pair), previous, and/or next ID are cached
+   1. Fetch the current, previous, and/or next ID
+   2. Cache the response with a key pair in local storage
+3. Load the previous and next pokemon images if found
+4. Load the current pokemon images (front male/female, shiny front male/female) into the entry
+5. Load the pokemon name
+6. Load the pokemon abilities
+7. Load the pokemon stats
+8. Find the most recent pokedex text and show it
+9. Calculate stat points and draw lines between them on a canvas
+10. Grey out/disable left/right buttons if there is no next/previous pokemon/pokedex entry
+* ### User Clicked Next/Previous PokeDex Entry Button
+1. Navigate to the next/previous pokedex entry page with the next/previous pokemon id
+2. Go into **User Navigate to Page**
+* ### User Clicked Next/Previous PokeDex description
+  - Stretch Goal
