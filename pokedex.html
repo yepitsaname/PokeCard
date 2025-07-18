@@ -15,10 +15,10 @@
     <div class="pokedex">
       <div class="pokedex-left">
         <div class="image-wrapper">
-          <img src="" alt="Pokemon"/>
+          <img class="pokemon-image" src="" alt="Pokemon"/>
         </div>
         <div>
-          <div class="ability-wrapper">
+          <div class="wrapper">
             <div class="ability-one">
               <h4>Ability Name</h4>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi unde sequi fuga, consequuntur repellat ad harum tenetur maiores asper.</p>
@@ -28,30 +28,43 @@
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, expedita modi atque nemo necessitatibus quia eos corrupti architecto</p>
             </div>
           </div>
-          <div class="entry-wrapper">
+          <div class="wrapper">
             <h4>PokeDex Entry <span class="gen">Place Holder</span></h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores minima numquam velit rem harum. Blanditiis illo possimus voluptas! Doloremque dolore aperiam impedit necessitatibus eos rem autem aut vel nemo nisi.</p>
           </div>
         </div>
       </div>
-      <div class="pokedex-wrapper-right">
+      <div class="pokedex-right">
         <header>
-          <h3 class="pokemon-name">Pokemon</h3>
+          <h3 class="pokemon-name">POKEMON</h3>
         </header>
-        <canvas id="stat-canvas"></canvas>
+        <div class="canvas-wrapper">
+          <canvas id="stat-canvas"></canvas>
+        </div>
         <div class="stat-wrapper">
           <div class="stat-left">
-            <p>Hit Points: <span class="hit-points">999</span></p>
-            <p>Attack: <span class="attack"></span>999</p>
-            <p>Defense: <span class="defense"></span>999</p>
-            <p>Sp. Attack: <span class="sp-attack">999</span></p>
-            <p>Sp. Defense: <span class="sp-defense">999</span></p>
-            <p>Speed: <span class="speed">999</span></p>
+            <p>Hit Points: </p>
+            <p>Attack: </p>
+            <p>Defense: </p>
+            <p>Sp. Attack: </p>
+            <p>Sp. Defense: </p>
+            <p>Speed: </p>
+          </div>
+          <div class="stat-middle">
+            <p class="hit-points">999</p>
+            <p class="attack">999</p>
+            <p class="defense">999</p>
+            <p class="sp-attack">999</p>
+            <p class="sp-defense">999</p>
+            <p class="speed">999</p>
           </div>
           <div class="stat-right">
-            <div class="bar-max">
-              <div class="bar-current"></div>
-            </div>
+            <div class="hit-points"></div>
+            <div class="attack"></div>
+            <div class="defense"></div>
+            <div class="sp-attack"></div>
+            <div class="sp-defense"></div>
+            <div class="speed"></div>
           </div>
         </div>
       </div>

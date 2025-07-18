@@ -43,3 +43,121 @@ main{
   justify-content: center;
   align-items: center;
 }
+
+.pokedex{
+  background-color: rgb(136,0,26);
+  margin-top: 3em;
+  padding: 0.5em;
+  border: 2px solid rgba(0,0,0,0.5);
+  display: flex;
+}
+
+
+.pokedex-left, .pokedex-right{
+  display: inline-block;
+  background-color: rgba(255,255,255,0.5);
+  width: 400px;
+  min-height: 600px;
+  margin-inline: 0px;
+}
+
+.pokedex-left{
+  border-right: 2px solid rgba(0,0,0,0.5);
+}
+
+.image-wrapper{
+  height: 400px;
+  width: 400px;
+  justify-content: center;
+  align-content: center;
+  background-color: rgb(255,255,255);
+}
+
+.pokemon-image{
+  height: 380px;
+  width: 380px;
+}
+
+.wrapper{
+  background-color: rgba(242, 237, 218,0.75);
+  border: 1px solid black;
+  margin: 0.25em;
+}
+
+.wrapper h4{
+  padding-block: 0.5em;
+  margin-block: 0;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid black;
+}
+
+.wrapper>div{
+  border: 1px solid black;
+}
+
+.wrapper p{
+  margin-block: 0px;
+  padding: 0.25em;
+  background-color: rgba(255,255,255,0.5)
+}
+
+.entry-wrapper{
+  background-color: rgba(242, 237, 218,0.75);
+  margin: 0.25em;
+}
+
+.pokedex-right{
+  border-left: 3px solid rgba(255,255,255,0.25)
+}
+
+.pokemon-name{
+  text-align: center;
+  font-family: 'Lato Heavy';
+  font-size: 28px;
+  background-color: rgba(242, 237, 218,0.75);
+  margin: 0.25em;
+  padding-block: 0.4em;
+  border: 1.5px solid rgba(0,0,0,0.25)
+}
+
+.canvas-wrapper{
+  margin: 0.25em;
+  height: 380px;
+  width: 380px;
+  border: 5px solid rgba(0,0,0,0.5);
+}
+
+#stat-canvas{
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.stat-wrapper{
+  display: grid;
+  margin: 1em;
+  grid-template: "left middle right right" / 1fr 0.5fr 1fr 1fr;
+  background-color: rgba(242, 237, 218,0.75);
+  margin: 0.25em;
+  padding-inline: 1em;
+  border: 1.5px solid rgba(0,0,0,0.25)
+}
+
+.stat-right{
+  width: 100%;
+  grid-area: right;
+  border-left: 1px solid black;
+}
+
+.stat-middle p{
+  margin-left: 1em;
+  font-weight: 600;
+}
+
+.stat-right>div {
+  background-color: white;
+  width: 90%;
+  height: 18.5px;
+  margin: 16px;
+}
