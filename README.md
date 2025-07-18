@@ -2,7 +2,7 @@
 This webpage is designed to show an end user the PokeDex data for any pokemon using Generation III stats and beyond. It will not show their move pool or learnsets.
 
 ## Basic Design
-![Poke Dex Page Design](https://github.com/yepitsaname/PokeCard/designs/PokeDex%20Design.png)
+![Poke Dex Page Design](./designs/PokeDex%20Design.png)
 
 ## Functions of the Page
 1. Allows users to cycle through the PokeDex
