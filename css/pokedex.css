@@ -165,3 +165,27 @@ main{
   height: 18.5px;
   margin: 16px;
 }
+
+.stat-right .hit-points{
+  background-color: rgb(105, 220, 18);
+}
+
+.stat-right .attack{
+  background-color: rgb(239, 204, 24);
+}
+
+.stat-right .defense{
+  background-color: rgb(232, 100, 18);
+}
+
+.stat-right .sp-attack{
+  background-color: rgb(20, 195, 241);
+}
+
+.stat-right .sp-defense{
+  background-color: rgb(74, 106, 223);
+}
+
+.stat-right .speed{
+  background-color: rgb(213, 29, 173);
+}
