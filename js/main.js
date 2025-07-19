@@ -10,9 +10,19 @@ class Pokemon {
     this.pokedexGeneration = 'undefined';
     this.stats = [0,0,0,0,0,0];
     this.images = [];
+    this.height;
+    this.weight;
   }
 
   get key(){ return this.#key }
+
+  updatePokemon(data){
+    this.name = data.name;
+    this.ability_1 = data.abilities[0];
+    this.ability_2 = data.abilities[1];
+    this.height = data.height / 10; // converts from decimeters to meters
+    this.weight = data.weight / 10; // converts from hectograms to kilograms
+  }
 
   static async fetchPokemon(pokemon){
     await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.key}`)
@@ -24,11 +34,18 @@ class Pokemon {
     let data = localStorage.getItem(key)
     return JSON.parse(data);
   }
+
+  static updatePokeDex(pokemon){
+    let pokemonName = document.querySelector('.pokemon-name');
+    pokemonName.innerText = pokemon.name;
+  }
 }
 
 // Check pokemon key
 const params = new URLSearchParams(window.location.search)
-pokemon_key = Number(params.get('pokemon'));
+let pokemon_key = Number(params.get('pokemon'));
+pokemon_key <= 0 || pokemon_key >= 1025 ? pokemon_key = 1 : false;
+console.log(pokemon_key)
 
 window.onload = ()=>{
 
@@ -47,7 +64,8 @@ window.onload = ()=>{
     var mainPokemon = new Pokemon(pokemon_key)
     if( localStorage.getItem(mainPokemon.key) == null ){
       localStorage.setItem(mainPokemon.key, false);
-      Pokemon.fetchPokemon(mainPokemon);
+      Pokemon.fetchPokemon(mainPokemon)
+        .then(()=>updatePokeDex(mainPokemon))
     } else {
       Pokemon.readStorage(mainPokemon.key);
     };
@@ -62,12 +80,4 @@ window.onload = ()=>{
       Pokemon.readStorage(nextPokemon.key);
     }
   };
-
-  // Cache pokemon
-
-  // Start an interval to check fetch states
-
-  // Load data once Fetching is complete
-
-  // Show data (hide loading screen/unhide content)
 }
