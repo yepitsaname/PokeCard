@@ -58,30 +58,30 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
    - Allows for previous and next pokemon operations
    - Allows for a pokemon to be loaded on page load
    - Allows the page to be "static" on load
-- [] Sets default pokemon to key 1 if no key provided
-- [] Fetches pokemon data based on a user search request
+- [ ] Sets default pokemon to key 1 if no key provided
+- [ ] Fetches pokemon data based on a user search request
    - Allows for a bypass of the normal "search" request
 - [X] Caches pokemon data in the local storage
    - Keeps from making repeated API calls
-- [] Caches a id pokemon name in the local storage
+- [ ] Caches a id pokemon name in the local storage
    - Keeps from making repeated API calls since calls are by by ID
-- [] Gets Pokemon name and displays it
-- [] Gets Pokemon ability data and displays it
-- [] Gets Pokemon image data and displays it
-- [] Gets Pokemon Pokedex data based on most recent generation
-- [] Gets Pokemon stats and displays them
-   - - [] Text
-   - - [] Bar graph
-      - - [] Set width of a div equal to 255 / pokemon stat * 90% (max width of div)
-   - - [] Chart
-      - - [] Uses a canvas to draw lines and points
-      - - [] Has math to determine points on a graph for each stat
-      - - [] Stroke a shape from the points
-      - - [] Fill in the shape with a color
+- [ ] Gets Pokemon name and displays it
+- [ ] Gets Pokemon ability data and displays it
+- [ ] Gets Pokemon image data and displays it
+- [ ] Gets Pokemon Pokedex data based on most recent generation
+- [ ] Gets Pokemon stats and displays them
+   - - [ ] Text
+   - - [ ] Bar graph
+      - - [ ] Set width of a div equal to 255 / pokemon stat * 90% (max width of div)
+   - - [ ] Chart
+      - - [ ] Uses a canvas to draw lines and points
+      - - [ ] Has math to determine points on a graph for each stat
+      - - [ ] Stroke a shape from the points
+      - - [ ] Fill in the shape with a color
 
 ## Stretch Goals
-- [] Display the encounter route/routes
-- [] Allow for the user to see shiny/female variants of the images
-- [] Navigates to the last user page visit on refresh with no parameter
+- [ ] Display the encounter route/routes
+- [ ] Allow for the user to see shiny/female variants of the images
+- [ ] Navigates to the last user page visit on refresh with no parameter
    - Possibly useful - goal for later
-- [] User Clicked Next/Previous PokeDex description
+- [ ] User Clicked Next/Previous PokeDex description
