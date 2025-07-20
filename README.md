@@ -70,8 +70,10 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
    - Keeps from making repeated API calls since calls are by by ID
 - [x] Gets Pokemon name and displays it
 - [ ] Gets Pokemon ability data and displays it
+   - [ ] Fetch ability information
 - [x] Gets Pokemon image data and displays it
 - [ ] Gets Pokemon Pokedex data based on most recent generation
+   - [ ] Fetch pokedex information
 - [x] Gets Pokemon stats and displays them
    - - [x] Text
    - - [x] Bar graph
@@ -81,6 +83,20 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
       - - [ ] Has math to determine points on a graph for each stat
       - - [ ] Stroke a shape from the points
       - - [ ] Fill in the shape with a color
+
+## Identified Problems Not Previously Considered
+- [ ] A pokemon fetch does not pull the descriptions of abilities
+- [ ] A pokemon fetch does not pull the pokedex entry description
+
+## Other Things to Consider for User Experience
+- [ ] A default loading page
+   - [ ] Checks if pokemon is loaded in storage
+   - [ ] Performs pokemon fetch request
+   - [ ] Performs ability fetch requests
+   - [ ] Performs pokedex entry fetch request
+   - [ ] Saves data into memory
+   - [ ] Puts data on screen
+   - [ ] Hides loading elements
 
 ## Stretch Goals
 - [ ] Display the encounter route/routes

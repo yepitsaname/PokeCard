@@ -1,8 +1,8 @@
 class Pokemon {
   #key;
-  constructor(id){
+  constructor(id, key){
     this.id = id;
-    this.#key = id;
+    this.#key = key;
     this.name = 'undefined';
     this.abilities = [];
     this.pokedexEntry = 'undefined';
@@ -14,7 +14,7 @@ class Pokemon {
     this.types = [];
   }
 
-  get key(){ return this.#key }
+  get key(){ return this.#key };
 
   set nameTag(name){
     document.querySelector('.pokemon-name').innerHTML = name.toUpperCase();
@@ -56,17 +56,34 @@ class Pokemon {
     this.types = data.types.map(element => element.type)
   }
 
+  startDataRetrieval(){
+    if(this.id > 0 && this.id < 1025 ){
+      if(localStorage.getItem(this.id) == null ){
+        localStorage.setItem(this.id, false);
+        Pokemon.fetchPokemon(this.id);
+      };
+
+      var loaded = setInterval(()=>{
+        if(Pokemon.readStorage(this.id)){
+          this.updatePokemon(Pokemon.readStorage(this.id));
+          if(this.id === this.key){ Pokemon.updatePokeDex(this) }
+          clearInterval(loaded);
+        }
+      }, 100);
+
+    };
+  }
+
   static async fetchPokemon(key){
     await fetch(`https://pokeapi.co/api/v2/pokemon/${key}`)
       .then(response => response.json())
       .then((data) => {
         localStorage.setItem(key, JSON.stringify(data))
         localStorage.setItem(data.name, key);
-        return data;
       });
   }
 
-  static async readStorage(key){
+  static readStorage(key){
     let data = localStorage.getItem(key)
     return JSON.parse(data);
   }
@@ -83,42 +100,15 @@ class Pokemon {
 const params = new URLSearchParams(window.location.search)
 let pokemon_key = Number(params.get('pokemon'));
 pokemon_key <= 0 || pokemon_key >= 1025 ? pokemon_key = 1 : false;
-console.log(pokemon_key)
+
+const previousPokemon = new Pokemon(pokemon_key - 1, pokemon_key);
+const mainPokemon = new Pokemon(pokemon_key, pokemon_key);
+const nextPokemon = new Pokemon(pokemon_key + 1, pokemon_key);
 
 window.onload = ()=>{
 
   // Set fetch state & pokemon by key
-  if( pokemon_key - 1 > 0 && pokemon_key - 1 < 1025 ){
-    var previousPokemon = new Pokemon(pokemon_key - 1);
-    if( localStorage.getItem(previousPokemon.key) == null ){
-      localStorage.setItem(previousPokemon.key, false);
-      Pokemon.fetchPokemon(previousPokemon.key);
-    } else {
-      Pokemon.readStorage(previousPokemon.key);
-    };
-  };
-
-  if( pokemon_key > 0 && pokemon_key < 1025 ){
-    var mainPokemon = new Pokemon(pokemon_key)
-    if( localStorage.getItem(mainPokemon.key) == null ){
-      localStorage.setItem(mainPokemon.key, false);
-      Pokemon.fetchPokemon(mainPokemon.key)
-        .then((data)=> mainPokemon.updatePokemon(data))
-        .then(()=>Pokemon.updatePokeDex(mainPokemon))
-    } else {
-      Pokemon.readStorage(mainPokemon.key)
-        .then((data)=> mainPokemon.updatePokemon(data))
-        .then(()=>Pokemon.updatePokeDex(mainPokemon))
-    };
-  };
-
-  if( pokemon_key + 1 > 0 && pokemon_key + 1 < 1025 ){
-    var nextPokemon = new Pokemon(pokemon_key + 1)
-    if( localStorage.getItem(nextPokemon.key) == null ){
-      localStorage.setItem(pokemon_key + 1, false);
-      Pokemon.fetchPokemon(nextPokemon.key);
-    } else {
-      Pokemon.readStorage(nextPokemon.key);
-    }
-  };
+  previousPokemon.startDataRetrieval();
+  mainPokemon.startDataRetrieval();
+  nextPokemon.startDataRetrieval();
 }
