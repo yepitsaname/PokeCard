@@ -69,8 +69,8 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
 - [x] Caches a id pokemon name in the local storage
    - Keeps from making repeated API calls since calls are by by ID
 - [x] Gets Pokemon name and displays it
-- [ ] Gets Pokemon ability data and displays it
-   - [ ] Fetch ability information
+- [x] Gets Pokemon ability data and displays it
+   - [x] Fetch ability information
 - [x] Gets Pokemon image data and displays it
 - [ ] Gets Pokemon Pokedex data based on most recent generation
    - [ ] Fetch pokedex information
@@ -85,7 +85,7 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
       - - [ ] Fill in the shape with a color
 
 ## Identified Problems Not Previously Considered
-- [ ] A pokemon fetch does not pull the descriptions of abilities
+- [x] A pokemon fetch does not pull the descriptions of abilities
 - [ ] A pokemon fetch does not pull the pokedex entry description
 
 ## Other Things to Consider for User Experience

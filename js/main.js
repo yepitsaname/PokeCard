@@ -23,9 +23,11 @@ class Pokemon {
   set abilitiesTag(abilities){
     let ability_1 = document.querySelector('.ability-one');
     ability_1.querySelector('h4').innerHTML = abilities[0].toUpperCase();
+    ability_1.querySelector('p').innerText = Pokemon.readStorage(abilities[0]).effect;
 
     let ability_2 = document.querySelector('.ability-two');
     ability_2.querySelector('h4').innerHTML = abilities[1].toUpperCase();
+    ability_2.querySelector('p').innerText = Pokemon.readStorage(abilities[1]).effect;
   }
 
   set spriteTag(sprites){
@@ -66,11 +68,12 @@ class Pokemon {
       var loaded = setInterval(()=>{
         if(Pokemon.readStorage(this.id)){
           this.updatePokemon(Pokemon.readStorage(this.id));
+          Pokemon.fetchAbility(this.abilities[0]);
+          Pokemon.fetchAbility(this.abilities[1]);
           if(this.id === this.key){ Pokemon.updatePokeDex(this) }
           clearInterval(loaded);
         }
       }, 100);
-
     };
   }
 
@@ -80,6 +83,16 @@ class Pokemon {
       .then((data) => {
         localStorage.setItem(key, JSON.stringify(data))
         localStorage.setItem(data.name, key);
+      });
+  }
+
+  static async fetchAbility(ability){
+    await fetch(`https://pokeapi.co/api/v2/ability/${ability}`)
+      .then(response => response.json())
+      .then((data) => {
+        data.effect_entries[0].language.name == 'en' ?
+          localStorage.setItem(ability, JSON.stringify(data.effect_entries[0])) :
+          localStorage.setItem(ability, JSON.stringify(data.effect_entries[1]))
       });
   }
 
@@ -106,7 +119,6 @@ const mainPokemon = new Pokemon(pokemon_key, pokemon_key);
 const nextPokemon = new Pokemon(pokemon_key + 1, pokemon_key);
 
 window.onload = ()=>{
-
   // Set fetch state & pokemon by key
   previousPokemon.startDataRetrieval();
   mainPokemon.startDataRetrieval();
