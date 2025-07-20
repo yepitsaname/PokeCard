@@ -87,6 +87,8 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
 ## Identified Problems Not Previously Considered
 - [x] A pokemon fetch does not pull the descriptions of abilities
 - [ ] A pokemon fetch does not pull the pokedex entry description
+- [ ] Look into Morepeko / multiform
+- [ ] Look into pokemon with more than two abilities
 
 ## Other Things to Consider for User Experience
 - [ ] A default loading page
