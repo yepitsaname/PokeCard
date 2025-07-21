@@ -29,10 +29,35 @@ class Pokedex{
     stat_divTags.forEach((tag, index) => tag.style.width = `${stats[index]/255 * 90}%`)
   }
 
+  static set canvas(abilities){
+    const canvas = document.querySelector('#stat-canvas');
+    canvas.height = 380;
+    canvas.width = 380;
+    const context = canvas.getContext('2d');
+
+    context.beginPath();
+    context.lineTo(...Utility.getCoordinate(180,190, false, false, false))
+    context.lineTo(...Utility.getCoordinate(180,190, true, true, false))
+    context.lineTo(...Utility.getCoordinate(180,190, true, true, true))
+    context.lineTo(...Utility.getCoordinate(180,190, false, false, true))
+    context.lineTo(...Utility.getCoordinate(180,190, true, false, true))
+    context.lineTo(...Utility.getCoordinate(180,190, true, false, false))
+    // context.lineTo(...Utility.getCoordinate(30,180,170))
+    // context.lineTo(...Utility.getCoordinate(90,180,170))
+    // context.lineTo(...Utility.getCoordinate(150,180,170))
+    // context.lineTo(...Utility.getCoordinate(210,180,170))
+    // context.lineTo(...Utility.getCoordinate(270,180,170))
+    // context.lineTo(...Utility.getCoordinate(330,180,170))
+    context.closePath();
+    //context.strokeStyle('black');
+    context.stroke();
+  }
+
   static updatePokeDex(pokemon){
     Pokedex.nameTag = pokemon.name;
     Pokedex.abilitiesTag = pokemon.abilities;
     Pokedex.spriteTag = pokemon.sprites;
     Pokedex.statTag = pokemon.stats;
+    Pokedex.canvas = pokemon.abilities;
   }
 }

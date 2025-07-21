@@ -52,7 +52,7 @@ class Pokemon {
 
 // Check pokemon key
 const params = new URLSearchParams(window.location.search)
-let pokemon_key = Number(params.get('pokemon'));
+const pokemon_key = Number(params.get('pokemon'));
 pokemon_key <= 0 || pokemon_key >= 1025 ? pokemon_key = 1 : false;
 
 const previousPokemon = new Pokemon(pokemon_key - 1, pokemon_key);
@@ -65,3 +65,4 @@ window.onload = ()=>{
   mainPokemon.startDataRetrieval();
   nextPokemon.startDataRetrieval();
 }
+

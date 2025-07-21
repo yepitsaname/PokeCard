@@ -90,6 +90,7 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
 - [ ] A pokemon fetch does not pull the pokedex entry description
 - [ ] Look into Morepeko / multiform
 - [ ] Look into pokemon with more than two abilities
+- [ ] May need to re-add RegExp( /^(?!\s$)[A-Za-zÉé0-9\/ ,-.×]+$/gm )
 
 ## Other Things to Consider for User Experience
 - [ ] A default loading page
