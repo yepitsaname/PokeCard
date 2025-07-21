@@ -31,31 +31,44 @@ class Pokedex{
 
   static set canvas(stats){
     const canvas = document.querySelector('#stat-canvas');
-    canvas.height = 380;
-    canvas.width = 380;
     const context = canvas.getContext('2d');
+    context.canvas.height = 380;
+    context.canvas.width = 380;
 
+
+    const drawHexChart = (distances, color = 'black', fill = false, fillColor = 'black')=>{
+      context.beginPath();
+      context.lineTo(...Utility.getCoordinate(distances[0],190, true, false, false))
+      context.lineTo(...Utility.getCoordinate(distances[1],190, false, true, false))
+      context.lineTo(...Utility.getCoordinate(distances[2],190, false, true, true))
+      context.lineTo(...Utility.getCoordinate(distances[3],190, true, false, true))
+      context.lineTo(...Utility.getCoordinate(distances[4],190, false, false, true))
+      context.lineTo(...Utility.getCoordinate(distances[5],190, false, false, false))
+      context.closePath();
+      context.strokeStyle = color;
+      if( fill ){
+
+      }
+      context.stroke();
+    }
     // Draw Inner Stat Diagram
-    // context.beginPath();
-    // context.lineTo(...Utility.getCoordinate(stats[0] / 255 * 180,190, false, false, false))
-    // context.lineTo(...Utility.getCoordinate(stats[1] / 255 * 180,190, true, true, false))
-    // context.lineTo(...Utility.getCoordinate(stats[2] / 255 * 180,190, true, true, true))
-    // context.lineTo(...Utility.getCoordinate(stats[3] / 255 * 180,190, false, false, true))
-    // context.lineTo(...Utility.getCoordinate(stats[4] / 255 * 180,190, true, false, true))
-    // context.lineTo(...Utility.getCoordinate(stats[5] / 255 * 180,190, true, false, false))
-    // context.closePath();
-    // context.stroke();
+    let distances = stats.map(elem => elem = elem / 255 * 180)
+    drawHexChart(distances, 'red');
 
     // Draw Outer Graph
-    context.beginPath();
-    context.lineTo(...Utility.getCoordinate(180,190, false, false, false))
-    context.lineTo(...Utility.getCoordinate(180,190, true, true, false))
-    context.lineTo(...Utility.getCoordinate(180,190, true, true, true))
-    context.lineTo(...Utility.getCoordinate(180,190, false, false, true))
-    context.lineTo(...Utility.getCoordinate(180,190, true, false, true))
-    context.lineTo(...Utility.getCoordinate(180,190, true, false, false))
-    context.closePath();
-    context.stroke();
+    drawHexChart([180,180,180,180,180,180]);
+
+    // Draw 75 Graph
+    drawHexChart([135,135,135,135,135,135]);
+
+    // Draw 50 run Graph
+    drawHexChart([90,90,90,90,90,90]);
+
+    // Draw 25 run Graph
+    drawHexChart([45,45,45,45,45,45]);
+
+    // Draw 10 run Graph
+    drawHexChart([18,18,18,18,18,18]);
   }
 
   static updatePokeDex(pokemon){

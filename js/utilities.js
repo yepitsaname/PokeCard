@@ -27,29 +27,55 @@ class Utility{
     await fetch();
   }
 
-  static getCoordinate( distance, offset, is30 = false, flipX = false, flipY = false ){
-    const coordinate = [Utility.#getX(30,distance), Utility.#getY(30,distance)];
-    if( !is30 ){
-      if( flipY ){
-        coordinate[0] = offset;
-        coordinate[1] = offset + distance;
-      } else {
-        coordinate[0] = offset;
-        coordinate[1] = offset - distance;
-      }
+  // static getCoordinate( distance, offset, is30 = false, flipX = false, flipY = false ){
+  //   let coordinate = [Utility.#getX(45,distance), Utility.#getY(45,distance)];
+  //   if( !is30 ){
+  //     if( flipY ){
+  //       coordinate = [Utility.#getX(270,distance), Utility.#getY(270,distance)];
+  //     } else {
+  //       coordinate = [Utility.#getX(90,distance), Utility.#getY(90,distance)];
+  //     }
+  //   }
+  //   console.log("PRE  FLIPS = Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+
+  //   if( flipX ){
+  //     coordinate[0] = offset * 0.67 + coordinate[0];
+  //   } else {
+  //     coordinate[0] = coordinate[0];
+  //   }
+  //   if( flipY ){
+  //     coordinate[1] = offset * 0.67 + coordinate[1];
+  //   } else {
+  //     coordinate[1] = coordinate[1];
+  //   }
+  //   console.log("POST FLIPS = Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+  //   return coordinate;
+  // }
+
+  static getCoordinate( distance, offset, is90_270 = false, flipX = false, flipY = false ){
+    let coordinate = [0,0]
+    if( is90_270 ){
+      !flipY ?
+        coordinate[1] = -distance :
+        coordinate[1] = distance;
+      console.log("VERT: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
     } else {
-      if( flipX ){
-        coordinate[0] += offset * 1.4;
-      } else {
-        coordinate[0] -= offset * 0.35;
-      }
-      if( flipY ){
-        coordinate[1] += offset * 0.7;
-      } else {
-        coordinate[1] -= offset * 0.35;
+      if( !flipX && !flipY ){
+        coordinate = [-Utility.#getX(60,distance), -Utility.#getY(60,distance)];
+        console.log("HORZ 030: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+      } else if ( flipX && !flipY ){
+        coordinate = [Utility.#getX(60,distance), -Utility.#getY(60,distance)];
+        console.log("HORZ 150: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+      } else if ( flipX && flipY ){
+        coordinate = [Utility.#getX(60,distance), Utility.#getY(60,distance)];
+        console.log("HORZ 210: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+      } else if ( !flipX && flipY ){
+        coordinate = [-Utility.#getX(60,distance), Utility.#getY(60,distance)];
+        console.log("HORZ 270: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
       }
     }
-    console.log("X: %d Y: %d", ...coordinate)
+    coordinate[0] += 190;
+    coordinate[1] += 190;
     return coordinate;
   }
 
@@ -95,7 +121,8 @@ class Utility{
   }
 
   static #getRadians( angle ){
-    return angle * Math.PI / 180;
+    //console.log("Radians: ", angle * (Math.PI / 180))
+    return angle * (Math.PI / 180);
   }
 }
 
