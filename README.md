@@ -81,6 +81,7 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
    - - [ ] Chart
       - - [ ] Uses a canvas to draw lines and points
       - - [ ] Has math to determine points on a graph for each stat
+      - - [ ] Stroke outer and inner graph shapes
       - - [ ] Stroke a shape from the points
       - - [ ] Fill in the shape with a color
 

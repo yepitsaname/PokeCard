@@ -16,35 +16,6 @@ class Pokemon {
 
   get key(){ return this.#key };
 
-  set nameTag(name){
-    document.querySelector('.pokemon-name').innerHTML = name.toUpperCase();
-  }
-
-  set abilitiesTag(abilities){
-    let ability_1 = document.querySelector('.ability-one');
-    ability_1.querySelector('h4').innerHTML = abilities[0].toUpperCase();
-    ability_1.querySelector('p').innerText = Pokemon.readStorage(abilities[0]).effect;
-
-    let ability_2 = document.querySelector('.ability-two');
-    ability_2.querySelector('h4').innerHTML = abilities[1].toUpperCase();
-    ability_2.querySelector('p').innerText = Pokemon.readStorage(abilities[1]).effect;
-  }
-
-  set spriteTag(sprites){
-    document.querySelector('.pokemon-image.front').src = sprites[0];
-    document.querySelector('.pokemon-image.front.female').src = sprites[1];
-    document.querySelector('.pokemon-image.front.shiny').src = sprites[2];
-    document.querySelector('.pokemon-image.front.shiny.female').src = sprites[3];
-  }
-
-  set statTag(stats){
-    let stat_textTags = document.querySelectorAll('.stat-middle p');
-    stat_textTags.forEach((tag, index) => tag.innerText = stats[index])
-
-    let stat_divTags = document.querySelectorAll('.stat-right div');
-    stat_divTags.forEach((tag, index) => tag.style.width = `${stats[index]/255 * 90}%`)
-  }
-
   updatePokemon(data){
     this.name = data.name;
     this.abilities = data.abilities.map(element => element.ability.name)
@@ -60,53 +31,23 @@ class Pokemon {
 
   startDataRetrieval(){
     if(this.id > 0 && this.id < 1025 ){
-      if(localStorage.getItem(this.id) == null ){
+      if(Utility.readStorage(this.id) == null || Utility.readStorage(this.id) == 'false' ){
         localStorage.setItem(this.id, false);
-        Pokemon.fetchPokemon(this.id);
+        Utility.fetchPokemon(this.id);
       };
 
       var loaded = setInterval(()=>{
-        if(Pokemon.readStorage(this.id)){
-          this.updatePokemon(Pokemon.readStorage(this.id));
-          Pokemon.fetchAbility(this.abilities[0]);
-          Pokemon.fetchAbility(this.abilities[1]);
-          if(this.id === this.key){ Pokemon.updatePokeDex(this) }
+        if(Utility.readStorage(this.id) != null || Utility.readStorage(this.id) !='false' ){
+          this.updatePokemon(Utility.readStorage(this.id));
+          Utility.fetchAbility(this.abilities[0]);
+          Utility.fetchAbility(this.abilities[1]);
+          if(this.id === this.key){ Pokedex.updatePokeDex(this) }
           clearInterval(loaded);
         }
       }, 100);
     };
   }
 
-  static async fetchPokemon(key){
-    await fetch(`https://pokeapi.co/api/v2/pokemon/${key}`)
-      .then(response => response.json())
-      .then((data) => {
-        localStorage.setItem(key, JSON.stringify(data))
-        localStorage.setItem(data.name, key);
-      });
-  }
-
-  static async fetchAbility(ability){
-    await fetch(`https://pokeapi.co/api/v2/ability/${ability}`)
-      .then(response => response.json())
-      .then((data) => {
-        data.effect_entries[0].language.name == 'en' ?
-          localStorage.setItem(ability, JSON.stringify(data.effect_entries[0])) :
-          localStorage.setItem(ability, JSON.stringify(data.effect_entries[1]))
-      });
-  }
-
-  static readStorage(key){
-    let data = localStorage.getItem(key)
-    return JSON.parse(data);
-  }
-
-  static updatePokeDex(pokemon){
-    pokemon.nameTag = pokemon.name;
-    pokemon.abilitiesTag = pokemon.abilities;
-    pokemon.spriteTag = pokemon.sprites;
-    pokemon.statTag = pokemon.stats;
-  }
 }
 
 // Check pokemon key
