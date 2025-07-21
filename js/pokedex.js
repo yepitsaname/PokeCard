@@ -29,12 +29,24 @@ class Pokedex{
     stat_divTags.forEach((tag, index) => tag.style.width = `${stats[index]/255 * 90}%`)
   }
 
-  static set canvas(abilities){
+  static set canvas(stats){
     const canvas = document.querySelector('#stat-canvas');
     canvas.height = 380;
     canvas.width = 380;
     const context = canvas.getContext('2d');
 
+    // Draw Inner Stat Diagram
+    // context.beginPath();
+    // context.lineTo(...Utility.getCoordinate(stats[0] / 255 * 180,190, false, false, false))
+    // context.lineTo(...Utility.getCoordinate(stats[1] / 255 * 180,190, true, true, false))
+    // context.lineTo(...Utility.getCoordinate(stats[2] / 255 * 180,190, true, true, true))
+    // context.lineTo(...Utility.getCoordinate(stats[3] / 255 * 180,190, false, false, true))
+    // context.lineTo(...Utility.getCoordinate(stats[4] / 255 * 180,190, true, false, true))
+    // context.lineTo(...Utility.getCoordinate(stats[5] / 255 * 180,190, true, false, false))
+    // context.closePath();
+    // context.stroke();
+
+    // Draw Outer Graph
     context.beginPath();
     context.lineTo(...Utility.getCoordinate(180,190, false, false, false))
     context.lineTo(...Utility.getCoordinate(180,190, true, true, false))
@@ -42,14 +54,7 @@ class Pokedex{
     context.lineTo(...Utility.getCoordinate(180,190, false, false, true))
     context.lineTo(...Utility.getCoordinate(180,190, true, false, true))
     context.lineTo(...Utility.getCoordinate(180,190, true, false, false))
-    // context.lineTo(...Utility.getCoordinate(30,180,170))
-    // context.lineTo(...Utility.getCoordinate(90,180,170))
-    // context.lineTo(...Utility.getCoordinate(150,180,170))
-    // context.lineTo(...Utility.getCoordinate(210,180,170))
-    // context.lineTo(...Utility.getCoordinate(270,180,170))
-    // context.lineTo(...Utility.getCoordinate(330,180,170))
     context.closePath();
-    //context.strokeStyle('black');
     context.stroke();
   }
 
@@ -58,6 +63,6 @@ class Pokedex{
     Pokedex.abilitiesTag = pokemon.abilities;
     Pokedex.spriteTag = pokemon.sprites;
     Pokedex.statTag = pokemon.stats;
-    Pokedex.canvas = pokemon.abilities;
+    Pokedex.canvas = pokemon.stats;
   }
 }

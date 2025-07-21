@@ -23,6 +23,10 @@ class Utility{
       });
   }
 
+  static async fetchPokedexEntry(){
+    await fetch();
+  }
+
   static getCoordinate( distance, offset, is30 = false, flipX = false, flipY = false ){
     const coordinate = [Utility.#getX(30,distance), Utility.#getY(30,distance)];
     if( !is30 ){

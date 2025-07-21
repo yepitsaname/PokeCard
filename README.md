@@ -79,10 +79,10 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
    - - [x] Bar graph
       - - [x] Set width of a div equal to 255 / pokemon stat * 90 (max width of div)
    - - [ ] Chart
-      - - [ ] Uses a canvas to draw lines and points
+      - - [x] Uses a canvas to draw lines and points
       - - [ ] Has math to determine points on a graph for each stat
-      - - [ ] Stroke outer and inner graph shapes
-      - - [ ] Stroke a shape from the points
+      - - [x] Stroke outer and inner graph shapes
+      - - [x] Stroke a shape from the points
       - - [ ] Fill in the shape with a color
 
 ## Identified Problems Not Previously Considered
