@@ -103,7 +103,7 @@ window.onload = ()=>{
     if((event.key === 'Enter' || event.keyCode === 13) && search.value != ''){
       if( Utility.readStorage(search.value) == null ){
         Utility.fetchPokemon(search.value)
-          .then((response)=>{
+          .then(()=>{
             goToPokemon(Utility.readStorage(search.value))
           })
           .catch(error => {
@@ -115,4 +115,3 @@ window.onload = ()=>{
     }
   })
 }
-

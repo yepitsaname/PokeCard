@@ -44,6 +44,22 @@ class Pokedex{
     stat_divTags.forEach((tag, index) => tag.style.width = `${stats[index]/255 * 90}%`)
   }
 
+  static set heightWeight(data){
+    document.querySelector('p.height').innerText = data[0] + ' m';
+    document.querySelector('p.weight').innerText = data[1] + ' kg';
+  }
+
+  static set typeTags(types){
+    let tags = document.querySelectorAll('.type');
+    tags.forEach((tag, index) => {
+      if( types[index] ){
+        tag.innerText = types[index].name.toUpperCase();
+        tag.classList.toggle(types[index].name)
+        tag.hidden = false;
+      }
+    })
+  }
+
   static set canvas(stats){
     // Convert into a utility method for future use.
     const canvas = document.querySelector('#stat-canvas');
@@ -108,5 +124,7 @@ class Pokedex{
     Pokedex.statTag = pokemon.stats;
     Pokedex.canvas = pokemon.stats;
     Pokedex.pokedexEntryTag = pokemon.pokedexEntry
+    Pokedex.heightWeight = [pokemon.height, pokemon.weight]
+    Pokedex.typeTags = pokemon.types
   }
 }
