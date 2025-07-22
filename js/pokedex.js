@@ -5,13 +5,13 @@ class Pokedex{
   }
 
   static set abilitiesTag(abilities){
-    let ability_1 = document.querySelector('.ability-one');
-    ability_1.querySelector('h4').innerHTML = abilities[0].toUpperCase();
-    ability_1.querySelector('p').innerText = Utility.readStorage(abilities[0]).effect;
+    let htmlTag = document.querySelector(".abilities");
+    htmlTag.innerHTML = '';
 
-    let ability_2 = document.querySelector('.ability-two');
-    ability_2.querySelector('h4').innerHTML = abilities[1].toUpperCase();
-    ability_2.querySelector('p').innerText = Utility.readStorage(abilities[1]).effect;
+    abilities.forEach(ability=> {
+      htmlTag.innerHTML += `<div><h4>${ability.toUpperCase()}</h4><p>${Utility.readStorage(ability).effect}</p></div>`
+      console.log(Utility.readStorage(ability))
+    })
   }
 
   static set spriteTag(sprites){

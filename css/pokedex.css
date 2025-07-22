@@ -52,6 +52,9 @@ main{
   padding: 2em;
   margin: 2em;
   display: block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .page-img{
@@ -60,6 +63,8 @@ main{
   height: 4em;
   width: 4em;
   display: inline;
+  background-color: rgba(255,255,255,0.80);
+  margin: 0;
 }
 
 .arrow{
@@ -69,6 +74,7 @@ main{
   height: 1em;
   width: 1em;
   display: inline-block;
+  margin-top: 0;
 }
 
 .right{

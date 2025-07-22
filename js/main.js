@@ -36,25 +36,41 @@ class Pokemon {
         Utility.fetchPokemon(this.id);
       };
 
-      var loaded = setInterval(()=>{
+
+      let loading = setInterval(()=>{
         if(Utility.readStorage(this.id) != null || Utility.readStorage(this.id) !='false' ){
           this.updatePokemon(Utility.readStorage(this.id));
 
           this.abilities.forEach( ability => {
-            if(Utility.readStorage(ability) == null){
-              Utility.fetchAbility(ability);
-            };
+            if(Utility.readStorage(ability) == null){ Utility.fetchAbility(ability) };
           });
 
-          if(Utility.readStorage(this.name + 'pokedex') == null){
-            Utility.fetchPokedexEntry(this.name);
+          if(Utility.readStorage(this.name + '-pokedex') == null){
+            Utility.fetchPokedexEntry(this.name)
           };
-
-          if(this.id === this.key){ Pokedex.updatePokeDex(this) }
-
-          clearInterval(loaded);
+          clearInterval(loading);
         }
       }, 100);
+
+      let loaded = setInterval(()=>{
+        if(Utility.readStorage(this.name + '-pokedex') != null){
+          let abilities_state = [];
+
+          this.abilities.forEach(ability => {
+            Utility.readStorage != null ? abilities_state.push(true) : abilities_state.push(false)
+          })
+
+          if( abilities_state.reduce((all_states, state) => all_states = all_states && state )){
+            this.updatePokemon(Utility.readStorage(this.id));
+            if(this.id === this.key){ Pokedex.updatePokeDex(this) }
+            if(this.id === this.key - 1){ document.querySelector(".previous-pokemon .page-img").src = this.sprites[0] }
+            if(this.id === this.key + 1){ document.querySelector(".next-pokemon .page-img").src = this.sprites[0] }
+            clearInterval(loaded);
+          }
+        }
+      },100)
+
+
     };
   }
 
@@ -69,10 +85,20 @@ const previousPokemon = new Pokemon(pokemon_key - 1, pokemon_key);
 const mainPokemon = new Pokemon(pokemon_key, pokemon_key);
 const nextPokemon = new Pokemon(pokemon_key + 1, pokemon_key);
 
+function goToPokemon(URLParam){
+  URLParam <= 0 ? URLParam = 1 : false;
+  URLParam => 1025 ? URLParam = 1024 : false;
+  console.log(window.location.pathname + `?pokemon=${URLParam}`)
+  window.location.href = (`./pokedex.html?pokemon=${URLParam}`);
+}
+
 window.onload = ()=>{
   // Set fetch state & pokemon by key
   previousPokemon.startDataRetrieval();
   mainPokemon.startDataRetrieval();
   nextPokemon.startDataRetrieval();
+
+  document.querySelector('.previous-pokemon').addEventListener("click", ()=> { goToPokemon(pokemon_key - 1); console.log('<') })
+  document.querySelector('.next-pokemon').addEventListener("click", ()=>{ goToPokemon(pokemon_key + 1), console.log('>') })
 }
 

@@ -7,7 +7,7 @@ class Utility{
   static async fetchPokemon(key){
     await fetch(`https://pokeapi.co/api/v2/pokemon/${key}`)
       .then(response => response.json())
-      .then((data) => {
+      .then(data => {
         localStorage.setItem(key, JSON.stringify(data))
         localStorage.setItem(data.name, key);
       });
@@ -16,7 +16,7 @@ class Utility{
   static async fetchAbility(ability){
     await fetch(`https://pokeapi.co/api/v2/ability/${ability}`)
       .then(response => response.json())
-      .then((data) => {
+      .then(data => {
         data.effect_entries[0].language.name == 'en' ?
           localStorage.setItem(ability, JSON.stringify(data.effect_entries[0])) :
           localStorage.setItem(ability, JSON.stringify(data.effect_entries[1]))
@@ -24,7 +24,11 @@ class Utility{
   }
 
   static async fetchPokedexEntry(name){
-    // await fetch();
+    await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`)
+      .then(response => response.json())
+      .then(data => {
+        localStorage.setItem(name + '-pokedex', JSON.stringify(data))
+      });
   }
 
   static getCoordinate( distance, offset, is90_270 = false, flipX = false, flipY = false ){
