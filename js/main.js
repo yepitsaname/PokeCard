@@ -39,9 +39,19 @@ class Pokemon {
       var loaded = setInterval(()=>{
         if(Utility.readStorage(this.id) != null || Utility.readStorage(this.id) !='false' ){
           this.updatePokemon(Utility.readStorage(this.id));
-          Utility.fetchAbility(this.abilities[0]);
-          Utility.fetchAbility(this.abilities[1]);
+
+          this.abilities.forEach( ability => {
+            if(Utility.readStorage(ability) == null){
+              Utility.fetchAbility(ability);
+            };
+          });
+
+          if(Utility.readStorage(this.name + 'pokedex') == null){
+            Utility.fetchPokedexEntry(this.name);
+          };
+
           if(this.id === this.key){ Pokedex.updatePokeDex(this) }
+
           clearInterval(loaded);
         }
       }, 100);

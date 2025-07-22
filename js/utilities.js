@@ -23,8 +23,8 @@ class Utility{
       });
   }
 
-  static async fetchPokedexEntry(){
-    await fetch();
+  static async fetchPokedexEntry(name){
+    // await fetch();
   }
 
   static getCoordinate( distance, offset, is90_270 = false, flipX = false, flipY = false ){
@@ -33,20 +33,20 @@ class Utility{
       !flipY ?
         coordinate[1] = -distance :
         coordinate[1] = distance;
-      console.log("VERT: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+      // console.log("VERT: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
     } else {
       if( !flipX && !flipY ){
         coordinate = [-Utility.#getX(60,distance), -Utility.#getY(60,distance)];
-        console.log("HORZ 030: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+        // console.log("HORZ 030: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
       } else if ( flipX && !flipY ){
         coordinate = [Utility.#getX(60,distance), -Utility.#getY(60,distance)];
-        console.log("HORZ 150: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+        // console.log("HORZ 150: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
       } else if ( flipX && flipY ){
         coordinate = [Utility.#getX(60,distance), Utility.#getY(60,distance)];
-        console.log("HORZ 210: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+        // console.log("HORZ 210: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
       } else if ( !flipX && flipY ){
         coordinate = [-Utility.#getX(60,distance), Utility.#getY(60,distance)];
-        console.log("HORZ 270: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
+        // console.log("HORZ 270: Distance: %d --- X: %d Y: %d", distance, ...coordinate)
       }
     }
     coordinate[0] += 190;
