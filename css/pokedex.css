@@ -48,6 +48,39 @@ main{
   background-blend-mode: lighten;
 }
 
+.page-button{
+  padding: 2em;
+  margin: 2em;
+  display: block;
+}
+
+.page-img{
+  border: 5px solid black;
+  border-radius: 3em;
+  height: 4em;
+  width: 4em;
+  display: inline;
+}
+
+.arrow{
+  border: solid black;
+  border-width: 0 5px 5px 0;
+  padding: 3px;
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+}
+
+.right{
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left{
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
 .pokedex{
   background-color: rgb(136,0,26);
   margin-top: 3em;
