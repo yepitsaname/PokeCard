@@ -24,9 +24,8 @@ class Pokedex{
         };
       };
     })(entries)
-    entry_data.flavor_text = entry_data.flavor_text.replace(RegExp(/\n/g), ' ')
 
-    document.querySelector('.poke-entry p').innerText = entry_data.flavor_text.replace(RegExp(/\f/g), ' ');
+    document.querySelector('.poke-entry p').innerText = entry_data.flavor_text.replace(RegExp(/[\n\f]/g), ' ');
     document.querySelector('.gen').innerText = " - " + entry_data.version.name.toUpperCase();
   }
 

@@ -62,7 +62,7 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
    - Allows for a pokemon to be loaded on page load
    - Allows the page to be "static" on load
 - [x] Sets default pokemon to key 1 if no key provided
-- [ ] Fetches pokemon data based on a user search request
+- [x] Fetches pokemon data based on a user search request
    - Allows for a bypass of the normal "search" request
 - [X] Caches pokemon data in the local storage
    - Keeps from making repeated API calls
@@ -72,13 +72,13 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
 - [x] Gets Pokemon ability data and displays it
    - [x] Fetch ability information
 - [x] Gets Pokemon image data and displays it
-- [ ] Gets Pokemon Pokedex data based on most recent generation
-   - [ ] Fetch pokedex information
+- [x] CHANGE Gets Pokemon Pokedex data based on the first english entry
+   - [x] Fetch pokedex information
 - [x] Gets Pokemon stats and displays them
    - - [x] Text
    - - [x] Bar graph
       - - [x] Set width of a div equal to 255 / pokemon stat * 90 (max width of div)
-   - - [ ] Chart
+   - - [x] Chart
       - - [x] Uses a canvas to draw lines and points
       - - [x] Has math to determine points on a graph for each stat
       - - [x] Stroke outer and inner graph shapes
@@ -87,10 +87,10 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
 
 ## Identified Problems Not Previously Considered
 - [x] A pokemon fetch does not pull the descriptions of abilities
-- [ ] A pokemon fetch does not pull the pokedex entry description
+- [x] A pokemon fetch does not pull the pokedex entry description
 - [ ] Look into Morepeko / multiform
 - [ ] Look into pokemon with more than two abilities
-- [ ] May need to re-add RegExp( /^(?!\s$)[A-Za-zÉé0-9\/ ,-.×]+$/gm )
+- [x] May need to re-add RegExp( /^(?!\s$)[A-Za-zÉé0-9\/ ,-.×]+$/gm )
 
 ## Other Things to Consider for User Experience
 - [ ] A default loading page

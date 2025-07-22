@@ -37,7 +37,6 @@ class Pokemon {
         Utility.fetchPokemon(this.id);
       };
 
-
       let loading = setInterval(()=>{
         if(Utility.readStorage(this.id) != null || Utility.readStorage(this.id) !='false' ){
           this.updatePokemon(Utility.readStorage(this.id));
@@ -70,8 +69,6 @@ class Pokemon {
           }
         }
       },100)
-
-
     };
   }
 
@@ -101,5 +98,21 @@ window.onload = ()=>{
 
   document.querySelector('.previous-pokemon').addEventListener("click", ()=> { goToPokemon(pokemon_key - 1); console.log('<') })
   document.querySelector('.next-pokemon').addEventListener("click", ()=>{ goToPokemon(pokemon_key + 1), console.log('>') })
+  const search = document.querySelector('#poke-search')
+  search.addEventListener("keyup", (event)=>{
+    if((event.key === 'Enter' || event.keyCode === 13) && search.value != ''){
+      if( Utility.readStorage(search.value) == null ){
+        Utility.fetchPokemon(search.value)
+          .then((response)=>{
+            goToPokemon(Utility.readStorage(search.value))
+          })
+          .catch(error => {
+            return error;
+          });
+      } else {
+        goToPokemon(Utility.readStorage(search.value));
+      };
+    }
+  })
 }
 

@@ -6,10 +6,16 @@ class Utility{
 
   static async fetchPokemon(key){
     await fetch(`https://pokeapi.co/api/v2/pokemon/${key}`)
-      .then(response => response.json())
-      .then(data => {
-        localStorage.setItem(key, JSON.stringify(data))
-        localStorage.setItem(data.name, key);
+      .then(response => {
+        console.log(response.status, typeof response.status)
+        if( response.status != 200 ){
+          throw new Error("Pokemon not Found")
+        }
+        return response.json()
+      }).then(data => {
+        console.log(data);
+        localStorage.setItem(data.id, JSON.stringify(data))
+        localStorage.setItem(data.name, data.id);
       });
   }
 
@@ -20,7 +26,7 @@ class Utility{
         data.effect_entries[0].language.name == 'en' ?
           localStorage.setItem(ability, JSON.stringify(data.effect_entries[0])) :
           localStorage.setItem(ability, JSON.stringify(data.effect_entries[1]))
-      });
+      }).catch(()=>console.log('caught'));
   }
 
   static async fetchPokedexEntry(name){
