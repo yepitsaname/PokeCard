@@ -80,10 +80,10 @@ This webpage is designed to show an end user the PokeDex data for any pokemon us
       - - [x] Set width of a div equal to 255 / pokemon stat * 90 (max width of div)
    - - [ ] Chart
       - - [x] Uses a canvas to draw lines and points
-      - - [ ] Has math to determine points on a graph for each stat
+      - - [x] Has math to determine points on a graph for each stat
       - - [x] Stroke outer and inner graph shapes
       - - [x] Stroke a shape from the points
-      - - [ ] Fill in the shape with a color
+      - - [x] Fill in the shape with a color
 
 ## Identified Problems Not Previously Considered
 - [x] A pokemon fetch does not pull the descriptions of abilities

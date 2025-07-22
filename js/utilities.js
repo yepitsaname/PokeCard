@@ -27,31 +27,6 @@ class Utility{
     await fetch();
   }
 
-  // static getCoordinate( distance, offset, is30 = false, flipX = false, flipY = false ){
-  //   let coordinate = [Utility.#getX(45,distance), Utility.#getY(45,distance)];
-  //   if( !is30 ){
-  //     if( flipY ){
-  //       coordinate = [Utility.#getX(270,distance), Utility.#getY(270,distance)];
-  //     } else {
-  //       coordinate = [Utility.#getX(90,distance), Utility.#getY(90,distance)];
-  //     }
-  //   }
-  //   console.log("PRE  FLIPS = Distance: %d --- X: %d Y: %d", distance, ...coordinate)
-
-  //   if( flipX ){
-  //     coordinate[0] = offset * 0.67 + coordinate[0];
-  //   } else {
-  //     coordinate[0] = coordinate[0];
-  //   }
-  //   if( flipY ){
-  //     coordinate[1] = offset * 0.67 + coordinate[1];
-  //   } else {
-  //     coordinate[1] = coordinate[1];
-  //   }
-  //   console.log("POST FLIPS = Distance: %d --- X: %d Y: %d", distance, ...coordinate)
-  //   return coordinate;
-  // }
-
   static getCoordinate( distance, offset, is90_270 = false, flipX = false, flipY = false ){
     let coordinate = [0,0]
     if( is90_270 ){
@@ -79,49 +54,17 @@ class Utility{
     return coordinate;
   }
 
-  // static getCoordinate( angle, distance, offset ){
-  //   const coordinate = [190,180];
-  //   if( angle == 90 || angle == 270 ){
-  //     angle == 90 ? coordinate[1] = distance - offset * 0.9 : false;
-  //     angle == 270 ? coordinate[1] = distance + offset * 1 : false;
-  //   } else {
-  //     coordinate[0] = Utility.#getX(angle,distance);
-  //     coordinate[1] = Utility.#getY(angle,distance);
-
-  //     // angle > 90 && angle < 180 ? coordinate[1] =- coordinate[1] : false;
-  //     angle > 0 && angle < 180 ? coordinate[1] -= offset * 0.3 : false;
-  //     angle > 180 && angle < 360 ? coordinate[1] += offset * 0.65 : false;
-  //     angle > 90 && angle < 270 ? coordinate[0] += offset * 1.5 : false;
-  //     angle < 90 || angle > 270 ? coordinate[0] -= offset * 0.35 : false;
-  //     // angle >  && angle
-  //   }
-  //   console.log("X: %d Y: %d", ...coordinate)
-  //   return coordinate;
-  // }
-
-  /*
-    The real problem, only need to calc 30 degrees. Invert x,y as needed
-  */
-
-  // -adjacent is x for angles < 90 => angle % 180 <= 90 ?
-  // +adjacent is x for angle > 90
-
-  // -opposite is y for angles < 180
-  // +opposite is y for angles > 180
-
-
   static #getX( angle, distance ){
     let radians = this.#getRadians(angle);
-    return Math.abs(Math.round( Math.sin(radians) * distance ));
+    return Math.round( Math.sin(radians) * distance );
   }
 
   static #getY( angle, distance ){
     let radians = this.#getRadians(angle);
-    return Math.abs(Math.round( Math.cos(radians) * distance ));
+    return Math.round( Math.cos(radians) * distance );
   }
 
   static #getRadians( angle ){
-    //console.log("Radians: ", angle * (Math.PI / 180))
     return angle * (Math.PI / 180);
   }
 }

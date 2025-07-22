@@ -30,6 +30,7 @@ class Pokedex{
   }
 
   static set canvas(stats){
+    // Convert into a utility method for future use.
     const canvas = document.querySelector('#stat-canvas');
     const context = canvas.getContext('2d');
     context.canvas.height = 380;
@@ -46,12 +47,6 @@ class Pokedex{
       context.closePath();
       context.strokeStyle = color;
       if( fill ){
-        // let gradient = context.createRadialGradient(190,190,5,200,200,380);
-        // gradient.addColorStop(0.0, '#ADD8E6');
-        // gradient.addColorStop(0.1, 'blue');
-        // gradient.addColorStop(0.2, 'green');
-        // gradient.addColorStop(0.5, 'red');
-        // context.fillStyle = gradient;
         context.fillStyle = '#69dc12'
         context.fill();
       }
