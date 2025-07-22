@@ -70,9 +70,9 @@ main{
 
 .page-img{
   border: 5px solid black;
-  border-radius: 3em;
-  height: 4em;
-  width: 4em;
+  border-radius: 4em;
+  height: 6em;
+  width: 6em;
   display: inline;
   background-color: rgba(255,255,255,0.80);
   margin: 0;
@@ -80,12 +80,12 @@ main{
 
 .arrow{
   border: solid black;
-  border-width: 0 5px 5px 0;
-  padding: 3px;
-  height: 1em;
-  width: 1em;
+  border-width: 0 7px 7px 0;
+  padding: 5px;
+  height: 2em;
+  width: 2em;
   display: inline-block;
-  margin-top: 0;
+  margin-bottom: 1.5em;
 }
 
 .right{
