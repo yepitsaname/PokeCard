@@ -27,6 +27,7 @@ class Pokemon {
       data.sprites.front_shiny, data.sprites.front_shiny_female
     ];
     this.types = data.types.map(element => element.type)
+    this.pokedexEntry = data.name + '-pokedex'
   }
 
   startDataRetrieval(){

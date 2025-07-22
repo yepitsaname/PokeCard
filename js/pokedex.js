@@ -10,8 +10,24 @@ class Pokedex{
 
     abilities.forEach(ability=> {
       htmlTag.innerHTML += `<div><h4>${ability.toUpperCase()}</h4><p>${Utility.readStorage(ability).effect}</p></div>`
-      console.log(Utility.readStorage(ability))
     })
+  }
+
+  static set pokedexEntryTag(entry){
+    let entries = Utility.readStorage(entry).flavor_text_entries;
+
+    let entry_data = ((array) => {
+      let english = new RegExp(/^(?!\s$)[A-Za-zÉé0-9\/ ,-.×]+$/gm);
+      for( let entry of entries ){
+        if( entry.language.name ='en' && english.test(entry.flavor_text) ){
+          return entry;
+        };
+      };
+    })(entries)
+    entry_data.flavor_text = entry_data.flavor_text.replace(RegExp(/\n/g), ' ')
+
+    document.querySelector('.poke-entry p').innerText = entry_data.flavor_text.replace(RegExp(/\f/g), ' ');
+    document.querySelector('.gen').innerText = " - " + entry_data.version.name.toUpperCase();
   }
 
   static set spriteTag(sprites){
@@ -92,5 +108,6 @@ class Pokedex{
     Pokedex.spriteTag = pokemon.sprites;
     Pokedex.statTag = pokemon.stats;
     Pokedex.canvas = pokemon.stats;
+    Pokedex.pokedexEntryTag = pokemon.pokedexEntry
   }
 }
